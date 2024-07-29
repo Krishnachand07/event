@@ -14,7 +14,7 @@ class _CalenderState extends State<Calender> {
   DateTime date = DateTime.now();
   DateTime month = DateTime.now();
   int today = 0;
-  int week = 1;
+  int week = 0;
   bool isToday = false;
   bool isSelected = false;
   DateTime selectedDate = DateTime.now();
@@ -31,6 +31,9 @@ class _CalenderState extends State<Calender> {
   void initState() {
     super.initState();
     today = date.day;
+    if(date.weekday == 7){
+      week++;
+    }
     weeks = generateWeek();
   }
 
