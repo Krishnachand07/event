@@ -31,7 +31,7 @@ class _CalenderState extends State<Calender> {
   void initState() {
     super.initState();
     today = date.day;
-    if(date.weekday == 7){
+    if (date.weekday == 7) {
       week++;
     }
     weeks = generateWeek();
@@ -53,7 +53,7 @@ class _CalenderState extends State<Calender> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: week == 0 || week == 1
+                  onPressed: week == 0 || date.weekday == 7
                       ? null
                       : () {
                           week--;
@@ -87,7 +87,7 @@ class _CalenderState extends State<Calender> {
                 }
                 isSelected = selectedDate.compareTo(weeks[index]) == 0;
                 return GestureDetector(
-                  onTap: week == 0 || week == 1 &&
+                  onTap: week == 0 &&
                           DateTime(weeks[index].year, weeks[index].month,
                                       weeks[index].day)
                                   .compareTo(DateTime(
@@ -122,7 +122,7 @@ class _CalenderState extends State<Calender> {
                                       ? Colors.white
                                       : isToday && !isSelected
                                           ? Theme.of(context).primaryColor
-                                          : week == 0 || week == 1 &&
+                                          : week == 0 &&
                                                   weeks[index].isBefore(date)
                                               ? Theme.of(context).disabledColor
                                               : null),
@@ -140,7 +140,7 @@ class _CalenderState extends State<Calender> {
                                       ? Colors.white
                                       : isToday && !isSelected
                                           ? Theme.of(context).primaryColor
-                                          : week == 0 || week == 1 &&
+                                          : week == 0 &&
                                                   weeks[index].isBefore(date)
                                               ? Theme.of(context).disabledColor
                                               : null),
